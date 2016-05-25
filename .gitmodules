@@ -1,0 +1,6 @@
+[submodule "third-party/miniglog"]
+	path = third-party/miniglog
+	url = https://github.com/tzutalin/miniglog
+[submodule "compute"]
+	path = compute
+	url = https://github.com/boostorg/compute.git
