@@ -1,0 +1,31 @@
+#!/usr/bin/python
+import os
+import sys
+import argparse
+import shutil
+from subprocess import call
+
+ROOT = None
+
+
+def sync_submodules():
+    print '---------------- Start syncing submodules ----------------'
+    # Fetch submodules
+    os.chdir(ROOT)
+    call(['git', 'submodule', 'update', '--init', '--recursive'])
+
+    if os.path.exists('CL-12'):
+        print 'CL-12 exists'
+    else:
+        print 'Download OpenCL-Headers..................'
+        call(['sh', 'get_opencl.sh'])
+    print '---------------- End   syncing submodules ----------------'
+
+
+def main(argv):
+    global ROOT
+    ROOT = os.path.dirname(os.path.abspath(__file__))
+    sync_submodules()
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
