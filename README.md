@@ -14,23 +14,31 @@ Boost.Compute-Anroid is a GPU/parallel-computing library for C++ based on OpenCL
 
 ## Build and run the first sample, sort.cpp
 
-* Connect to an Android device
+Make sure connecting to an Android device
 
-* Build and run
+`$ adb devices`
+
+
+Build and run
 
 `$ ./build.py --test`
 
-* Result on terminal:
+Result on terminal:
 ```
-        get the default compute device
-        Get name:QUALCOMM Adreno(TM)
-        Get global memory:956149760
-        Get local memory:8192
-        Get compute_units:4
-        create a compute context and command queue
-        generate random numbers on the host
-        create vector on the device
-        copy data to the device
-        sort data on the device
-        copy data back to the host
+	get the default compute device
+	get name:QUALCOMM Adreno(TM)
+	get global memory:956149760
+	get local memory:8192
+	get compute_units:4
+	create a compute context and command queue
+	generate random 10000 numbers on the host
+	create vector on the device
+	copy data to the device
+	sort data on the device
+	copy data back to the host
+	cost time:0.966731
+
+	Compare with STL sort without Boost.Compute
+	generate random 10000 numbers for stl to sort
+	cost time:0.002151
 ```
