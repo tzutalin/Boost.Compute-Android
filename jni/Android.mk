@@ -12,6 +12,7 @@ LOCAL_C_INCLUDES := \
                 CL-12/ \
                 CL-Stub/ \
                 third-party/miniglog/ \
+                third-party/Boost-for-Android/build/include/boost-1_55 \
                 compute/include
 
 LOCAL_CFLAGS   += -fPIC -O2
