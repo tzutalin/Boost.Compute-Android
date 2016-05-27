@@ -7,20 +7,20 @@ Boost.Compute-Anroid is a GPU/parallel-computing library for C++ based on OpenCL
 ## Requirements
 * Prepare a Android device
 
-* (Download and setup NDK)[https://github.com/tzutalin/android-ndk-downloader]
+* [Download and setup NDK](https://github.com/tzutalin/android-ndk-downloader)
 
 ## Setup
 `$ ./envsetup`
 
 ## Build and run the first sample, sort.cpp
 
-Connect to an Android device
+* Connect to an Android device
 
-Build and run
+* Build and run
 
 `$ ./build.py --test`
 
-Result on terminal:
+* Result on terminal:
 ```
         get the default compute device
         Get name:QUALCOMM Adreno(TM)
