@@ -21,7 +21,6 @@ def sync_submodules():
         call(['sh', 'get_opencl.sh'])
     print '---------------- End   syncing submodules ----------------'
 
-
 def main(argv):
     global ROOT
     ROOT = os.path.dirname(os.path.abspath(__file__))

@@ -25,20 +25,21 @@ Build and run
 
 Result on terminal:
 ```
-	get the default compute device
-	get name:QUALCOMM Adreno(TM)
-	get global memory:956149760
-	get local memory:8192
-	get compute_units:4
-	create a compute context and command queue
-	generate random 10000 numbers on the host
-	create vector on the device
-	copy data to the device
-	sort data on the device
-	copy data back to the host
-	cost time:0.966731
+    get the default compute device
+    get name:QUALCOMM Adreno(TM)
+    get global memory:956149760
+    get local memory:8192
+    get compute_units:4
+    get device type:4
+    create a compute context and command queue
+    generate random 10000 numbers on the host
+    create vector on the device
+    copy data to the device
+    sort data on the device
+    copy data back to the host
+    cost time:1.0061
 
-	Compare with STL sort without Boost.Compute
-	generate random 10000 numbers for stl to sort
-	cost time:0.002151
+    Compare with STL sort without Boost.Compute
+    generate random 10000 numbers for stl to sort
+    cost time:0.00234
 ```

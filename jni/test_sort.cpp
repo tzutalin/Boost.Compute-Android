@@ -23,6 +23,7 @@ int main() {
 	std::cout << "get global memory:" << gpu.global_memory_size() << std::endl;
 	std::cout << "get local memory:" << gpu.local_memory_size() << std::endl;
 	std::cout << "get compute_units:" << gpu.compute_units() << std::endl;
+	std::cout << "get device type:" << gpu.type() << std::endl;
 
 	std::cout << "create a compute context and command queue" << std::endl;
 	const int num_vector = 10000; // over 50000, there is Out of Resource for my device
