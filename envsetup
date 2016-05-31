@@ -15,10 +15,20 @@ def sync_submodules():
     call(['git', 'submodule', 'update', '--init', '--recursive'])
 
     if os.path.exists('CL-12'):
-        print 'CL-12 exists'
+        print 'CL-12 has existed already'
     else:
-        print 'Download OpenCL-Headers..................'
+        print 'Download OpenCL 1.2 Headers..................'
         call(['sh', 'get_opencl.sh'])
+
+    print 'Download Boost 1.55.0..................'
+    boost_path = os.path.join(ROOT, 'third-party', 'Boost-for-Android')
+    boost_source_folder = os.path.join(boost_path, 'boost_1_55_0')
+    os.chdir(boost_path)
+    if os.path.exists(boost_source_folder):
+        print 'boost has existed already'
+    else:
+        call(['sh', 'download-boost.sh'])
+
     print '---------------- End   syncing submodules ----------------'
 
 def main(argv):

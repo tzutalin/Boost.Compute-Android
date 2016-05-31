@@ -4,3 +4,4 @@ logs
 build.log
 *.swp
 *.vim
+*.tar.bz2
