@@ -1,6 +1,6 @@
 # Ignore CL headers
 CL-12
-
+third-party/Boost-for-Android/boost_1_55_0/
 # JNI objs and output
 obj
 libs
