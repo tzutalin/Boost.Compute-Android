@@ -1,6 +1,9 @@
 # Ignore CL headers
 CL-12
 third-party/Boost-for-Android/boost_1_55_0/
+third-party/OpenCV*
+third-party/opencv*
+
 # JNI objs and output
 obj
 libs

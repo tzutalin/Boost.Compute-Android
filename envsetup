@@ -4,9 +4,53 @@ import sys
 import argparse
 import shutil
 from subprocess import call
+import zipfile
+import subprocess
 
 ROOT = None
 
+def unzipFile(filename):
+    zfile = zipfile.ZipFile(filename)
+    for name in zfile.namelist():
+        (dirname, filename) = os.path.split(name)
+        print "Decompressing " + filename + " on " + dirname
+        zfile.extract(name)
+
+def copytree(src, dst, symlinks=False, ignore=None):
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s):
+            shutil.copytree(s, d, symlinks, ignore)
+        else:
+            shutil.copy2(s, d)
+
+# setup opencv
+def downloadPrebuiltOpencv(prefix='.', out_prefix= '.', version='3.1.0'):
+    OPENCV_PREBUILT_URL = 'http://netix.dl.sourceforge.net/project/opencvlibrary/opencv-android/{0}/OpenCV-{0}-android-sdk.zip'.format(version)
+    OPENCV_ARCHIVE = 'OpenCV-{0}-android-sdk.zip'.format(version)
+    OPENCV_UNZIP_DIR = 'OpenCV-android-sdk'
+    OPENCV_OUT_PATH='opencv/sdk'
+
+    OPENCV_ARCHIVE = os.path.join(prefix, OPENCV_ARCHIVE)
+    OPENCV_UNZIP_DIR = os.path.join(prefix, OPENCV_UNZIP_DIR)
+    OPENCV_OUT_PATH = os.path.join(out_prefix, OPENCV_OUT_PATH)
+    OPENCV_UNZIP_SDK_DIR = os.path.join(OPENCV_UNZIP_DIR, 'sdk')
+
+    if not os.path.isdir(OPENCV_UNZIP_DIR):
+        if not os.path.exists(OPENCV_ARCHIVE):
+            call(['wget', OPENCV_PREBUILT_URL, '-P', prefix])
+        currDir = os.getcwd()
+        os.chdir(prefix)
+        unzipFile(OPENCV_ARCHIVE)
+        os.chdir(currDir)
+
+    if not os.path.exists(OPENCV_OUT_PATH):
+        os.makedirs(OPENCV_OUT_PATH)
+
+    # Remove it if it exist
+    shutil.rmtree(OPENCV_OUT_PATH)
+    copytree(OPENCV_UNZIP_SDK_DIR, OPENCV_OUT_PATH)
 
 def sync_submodules():
     print '---------------- Start syncing submodules ----------------'
@@ -28,6 +72,12 @@ def sync_submodules():
         print 'boost has existed already'
     else:
         call(['sh', 'download-boost.sh'])
+
+    os.chdir(ROOT)
+    print 'download prebuilt opencv for android'
+    prebuilt_path = os.path.join(ROOT, 'third-party')
+    prebuilt_opencv_out = prebuilt_path
+    downloadPrebuiltOpencv(prefix=prebuilt_path, out_prefix = prebuilt_opencv_out)
 
     print '---------------- End   syncing submodules ----------------'
 
