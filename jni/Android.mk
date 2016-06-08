@@ -5,7 +5,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := test_sort
 
 LOCAL_SRC_FILES := ../CL-Stub/libopencl.c \
-                ../third-party/miniglog/glog/logging.cc \
                 test_sort.cpp
 
 LOCAL_C_INCLUDES := \
