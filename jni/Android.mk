@@ -15,6 +15,14 @@ LOCAL_C_INCLUDES := \
                 third-party/Boost-for-Android/boost_1_55_0 \
                 compute/include
 
+#MINIGLOG_LIB_TYPE:=SHARED
+MINIGLOG_LIB_TYPE:=STATIC
+ifeq ($(MINIGLOG_LIB_TYPE),SHARED)
+	LOCAL_SHARED_LIBRARIES := miniglog
+else
+	LOCAL_STATIC_LIBRARIES := miniglog
+endif
+
 LOCAL_CFLAGS   += -fPIC -O2
 LOCAL_LDLIBS := -lm -llog -ldl -lz
 LOCAL_CPPFLAGS += -fexceptions -frtti -std=c++11
@@ -30,3 +38,4 @@ include $(BUILD_EXECUTABLE)
 
 #include $(BUILD_SHARED_LIBRARY)
 
+include third-party/miniglog/MINIGLOG.mk
